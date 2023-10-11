@@ -52,3 +52,13 @@ button {
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
+.ManaBar {
+  position: absolute;
+  top: 713px;
+  left: 300px;
+  background-image: url("images/ManaCrystal.png");
+  background-repeat: repeat-x;
+  height: 31px;
+  width: 155px;
+}

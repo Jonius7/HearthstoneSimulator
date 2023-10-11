@@ -22,8 +22,8 @@ const Simulator = () => {
             <button onClick={handleAddCrystal}>+</button>
             <button onClick={handleRemoveCrystal}>-</button>
             <p>{manaCrystals}</p>
-            <div className="ManaBar">
-                
+            <div className="ManaBar" style={{width: manaCrystals * 31}}>
+
             </div>
         </div>
     );
