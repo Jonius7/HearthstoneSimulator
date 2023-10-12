@@ -55,10 +55,34 @@ button {
 
 .ManaBar {
   position: absolute;
-  top: 713px;
-  left: 300px;
+  top: 779px;
+  left: 600px;
   background-image: url("images/ManaCrystal.png");
   background-repeat: repeat-x;
   height: 31px;
   width: 155px;
+}
+
+.Player1Class {
+  position: absolute;
+  top: 650px;
+  left: 405px;
+  /*background-image: url("images/heroes/Druid.png");*/
+  background-repeat: no-repeat;
+  background-size: 35%;
+  object-fit: cover;
+  height: 121px;
+  width: 429px;
+}
+
+.Player2Class {
+  position: absolute;
+  top: 330px;
+  left: 405px;
+  /*background-image: url("images/heroes/Druid.png");*/
+  background-repeat: no-repeat;
+  background-size: 35%;
+  object-fit: cover;
+  height: 121px;
+  width: 429px;
 }
