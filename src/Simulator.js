@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import cards from './cards.json';
+import Autocomplete from "./AutoComplete";
 
 const Simulator = () => {
     const [manaCrystals, setManaCrystals] = useState(1);
@@ -6,6 +8,13 @@ const Simulator = () => {
     'Mage', 'Paladin', 'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior']
     const [player1Class, setPlayer1Class] = useState(2);
     const [player2Class, setPlayer2Class] = useState(4);
+
+    const jsonStringData = JSON.stringify(cards);
+    const jsonData = JSON.parse(jsonStringData);
+    const jsonNameData = []
+    for (var i = 0; i < jsonData.length; i++) {
+        jsonNameData.push(jsonData[i]["name"]);
+    }
 
     const handleAddCrystal = () => {
         if (manaCrystals < 10) {
@@ -43,6 +52,7 @@ const Simulator = () => {
         }
     }
 
+    
 
     return (
         <div className="Simulator">
@@ -76,6 +86,10 @@ const Simulator = () => {
                 </tr>
                 
             </table>
+            <Autocomplete
+                suggestions={jsonNameData}
+            />
+            
         </div>
     );
 };

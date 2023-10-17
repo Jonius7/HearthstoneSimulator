@@ -37,6 +37,8 @@
   }
 }
 
+/* Simulator CSS */
+
 .Simulator {
   background-color: rgb(91, 91, 221);
 
@@ -53,10 +55,14 @@ button {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.HS-board {
+
+}
+
 .ManaBar {
   position: absolute;
-  top: 779px;
-  left: 600px;
+  top: 86vh;
+  left: 59vw;
   background-image: url("images/ManaCrystal.png");
   background-repeat: repeat-x;
   height: 31px;
@@ -65,8 +71,8 @@ button {
 
 .Player1Class {
   position: absolute;
-  top: 650px;
-  left: 405px;
+  top: 76vh;
+  left: 44vw;
   /*background-image: url("images/heroes/Druid.png");*/
   background-repeat: no-repeat;
   background-size: 35%;
@@ -77,8 +83,8 @@ button {
 
 .Player2Class {
   position: absolute;
-  top: 330px;
-  left: 405px;
+  top: 37vh;
+  left: 44vw;
   /*background-image: url("images/heroes/Druid.png");*/
   background-repeat: no-repeat;
   background-size: 35%;
@@ -86,3 +92,51 @@ button {
   height: 121px;
   width: 429px;
 }
+
+/* End Simulator CSS */
+
+/* Autocomplete CSS */
+
+body {
+  font-family: sans-serif;
+}
+
+input {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  width: 300px;
+}
+
+.no-suggestions {
+  color: #999;
+  padding: 0.5rem;
+}
+
+.suggestions {
+  border: 1px solid #999;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  max-height: 143px;
+  overflow-y: auto;
+  padding-left: 0;
+  width: calc(300px + 1rem);
+}
+
+.suggestions li {
+  padding: 0.5rem;
+}
+
+.suggestion-active,
+.suggestions li:hover {
+  background-color: #008f68;
+  color: #fae042;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.suggestions li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
+}
+
+/* End Autocomplete CSS */
