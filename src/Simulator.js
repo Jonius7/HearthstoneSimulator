@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Select from "react-select";
 import cards from './cards.json';
 import Autocomplete from "./AutoComplete";
 //import board from './images/board.webp';
@@ -18,6 +19,34 @@ const Simulator = () => {
     const jsonNameData = []
     for (var i = 0; i < jsonData.length; i++) {
         jsonNameData.push(jsonData[i]["name"]);
+    }
+
+    const [selectedOption, setSelectedOption] = useState();
+    const [options, setOptions] =  useState([]);
+
+    useEffect(() => {
+        const getOptions = async () => {
+          try {
+            const response = await fetch("/data/cards.collectible.json");
+            const options = await response.json();
+            console.log(options);
+            setOptions(
+              options.map(({ id, name, dbfId }) => ({
+                dbfId,
+                label: name,
+                value: id
+              }))
+            );
+          } catch (error) {
+            // ignore
+          }
+        };
+        getOptions();
+    }, []);
+
+    const handleSetSelectedOption = e => {
+        console.log("Selected Value");
+        setSelectedOption(e.value);
     }
 
     //Mana Crystals
@@ -87,13 +116,16 @@ const Simulator = () => {
     
     //Player 1 Health Color
     const handlePlayer1HealthColor = () => {
+        if (player1Health < 30) {
 
+        }
     }
 
     const handlePlayer2HealthColor = () => {
-        
+        if (player2Health < 30) {
+
+        }
     }
-    
 
     return (
         <div className="Simulator">
@@ -129,14 +161,14 @@ const Simulator = () => {
                         <button onClick={handleIncPlayer1Health}>+</button>
                         <button onClick={handleDecPlayer1Health}>-</button>
                         <p>{player1Health}</p>
-                        <div className="Player1Health">{player1Health}</div>
+                        <div className="Player1Health" style={{color: player1Health < 30 ? "#D20403" : "white"}}>{player1Health}</div>
                     </td>
                     <td>
                         <p>Player 2 Health</p>
                         <button onClick={handleIncPlayer2Health}>+</button>
                         <button onClick={handleDecPlayer2Health}>-</button>
                         <p>{player2Health}</p>
-                        <div className="Player2Health">{player2Health}</div>
+                        <div className="Player2Health" style={{color: player2Health < 30 ? "#D20403" : "white"}}>{player2Health}</div>
                     </td>
                 </tr>
                 
@@ -145,7 +177,17 @@ const Simulator = () => {
                 suggestions={jsonNameData}
             />
             
-            
+            <Select
+                className="cards"
+                defaultValue={selectedOption}
+                onChange={handleSetSelectedOption}
+                options={options}
+                required
+                isClearable={false}
+                id="name"
+            />
+            <img className="card-image" src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${selectedOption}.png`}></img>
+            <div>Selected Option: {selectedOption}</div>
         </div>
     );
 };

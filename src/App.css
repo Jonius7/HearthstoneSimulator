@@ -127,6 +127,7 @@ input {
 }
 
 .suggestions {
+  position:relative;
   border: 1px solid #999;
   border-top-width: 0;
   list-style: none;
@@ -154,6 +155,18 @@ input {
 }
 
 /* End Autocomplete CSS */
+
+.cards {
+  width: 30%;
+  margin: auto;
+}
+
+.card-image {
+  position: absolute;
+  top: 55vh;
+  left: 45vw;
+  width: 150px;
+}
 
 @font-face {
   font-family: 'Belwe Bold';
