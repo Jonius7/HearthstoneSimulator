@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from "react-select";
 import cards from './cards.json';
 import Autocomplete from "./AutoComplete";
+import cardDivs from "./cardDivs";
 //import board from './images/board.webp';
 
 const Simulator = () => {
@@ -13,6 +14,8 @@ const Simulator = () => {
     const [player1Health, setPlayer1Health] = useState(30);
     const [player2Health, setPlayer2Health] = useState(30);
 
+    const [cardPosition, setCardPosition] = useState(0);
+
 
     const jsonStringData = JSON.stringify(cards);
     const jsonData = JSON.parse(jsonStringData);
@@ -23,6 +26,7 @@ const Simulator = () => {
 
     const [selectedOption, setSelectedOption] = useState();
     const [options, setOptions] =  useState([]);
+    //how to separate to create multiple instances
 
     useEffect(() => {
         const getOptions = async () => {
@@ -44,8 +48,30 @@ const Simulator = () => {
         getOptions();
     }, []);
 
+    const addCardItem = () => {
+
+    }
+
+    const createCardList = () => {
+        return (
+            <div>
+                <Select
+                    className="cards"
+                    defaultValue={selectedOption}
+                    onChange={handleSetSelectedOption}
+                    options={options}
+                    required
+                    isClearable={false}
+                    id="name"
+                />
+                <img className="card-image" src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${selectedOption}.png`} alt={selectedOption}></img>
+                <div>Selected Option: {selectedOption}</div>
+            </div>
+        );
+    }
+
     const handleSetSelectedOption = e => {
-        console.log("Selected Value");
+        //console.log("Selected Value");
         setSelectedOption(e.value);
     }
 
@@ -127,6 +153,18 @@ const Simulator = () => {
         }
     }
 
+    const handleIncCardPosition = () => {
+        if (cardPosition < 3) {
+            setCardPosition(cardPosition + 1);
+        }
+    }
+
+    const handleDecCardPosition = () => {
+        if (cardPosition > -3) {
+            setCardPosition(cardPosition - 1);
+        }
+    }
+
     return (
         <div className="Simulator">
             <p>Mana Crystals</p>
@@ -173,21 +211,67 @@ const Simulator = () => {
                 </tr>
                 
             </table>
-            <Autocomplete
+            {/*<Autocomplete
                 suggestions={jsonNameData}
-            />
-            
-            <Select
-                className="cards"
-                defaultValue={selectedOption}
-                onChange={handleSetSelectedOption}
-                options={options}
-                required
-                isClearable={false}
-                id="name"
-            />
-            <img className="card-image" src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${selectedOption}.png`}></img>
-            <div>Selected Option: {selectedOption}</div>
+            />*/}
+            <div className="cards-row">
+                <table>
+                    <tr>
+                        <td class="wideTd">
+                            <Select
+                                className="cards"
+                                defaultValue={selectedOption}
+                                onChange={handleSetSelectedOption}
+                                options={options}
+                                required
+                                isClearable={false}
+                                id="name"
+                            />
+                            <img 
+                                className="card-image" 
+                                src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${selectedOption}.png`} 
+                                alt={selectedOption}
+                                style={{left: `calc(46.5vw + ${cardPosition * 6}vw)`}}>
+                            </img>
+                            <div>Selected Option: {selectedOption}</div>
+                        </td>
+                        <td>
+                            <button onClick={handleIncCardPosition}>+</button>
+                            <button onClick={handleDecCardPosition}>-</button>
+                            <p>{cardPosition}</p>
+                        </td>
+                        <td class="wideTd">
+                            <Select
+                                className="cards"
+                                defaultValue={selectedOption}
+                                onChange={handleSetSelectedOption}
+                                options={options}
+                                required
+                                isClearable={false}
+                                id="name"
+                            />
+                            <img 
+                                className="card-image" 
+                                src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${selectedOption}.png`} 
+                                alt={selectedOption}
+                                style={{top: "70vh", left: `calc(46.5vw + ${cardPosition * 6}vw)`}}>
+                            </img>
+                            <div>Selected Option: {selectedOption}</div>
+                        </td>
+                        <td>
+                            <button onClick={handleIncCardPosition}>+</button>
+                            <button onClick={handleDecCardPosition}>-</button>
+                            <p>{cardPosition}</p>
+                        </td>
+                        <td>
+                            <cardDivs
+                                className="card-divs"
+                                state="1"
+                            />
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     );
 };

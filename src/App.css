@@ -61,7 +61,7 @@ button {
 
 .ManaBar {
   position: absolute;
-  top: 86vh;
+  top: 92vh;
   left: 59vw;
   background-image: url("images/ManaCrystal.png");
   background-repeat: repeat-x;
@@ -71,7 +71,7 @@ button {
 
 .Player1Class {
   position: absolute;
-  top: 76vh;
+  top: 82vh;
   left: 44vw;
   /*background-image: url("images/heroes/Druid.png");*/
   background-repeat: no-repeat;
@@ -83,7 +83,7 @@ button {
 
 .Player2Class {
   position: absolute;
-  top: 37vh;
+  top: 43vh;
   left: 44vw;
   /*background-image: url("images/heroes/Druid.png");*/
   background-repeat: no-repeat;
@@ -95,7 +95,7 @@ button {
 
 .Player1Health {
   position: absolute;
-  top: 49vh;
+  top: 55vh;
   left: 52.5vw;
   font-size: 22px;
   color: white;
@@ -104,7 +104,7 @@ button {
 
 .Player2Health {
   position: absolute;
-  top: 88vh;
+  top: 94vh;
   left: 52.5vw;
   font-size: 22px;
   color: white;
@@ -157,15 +157,20 @@ input {
 /* End Autocomplete CSS */
 
 .cards {
-  width: 30%;
   margin: auto;
 }
 
 .card-image {
   position: absolute;
   top: 55vh;
-  left: 45vw;
-  width: 150px;
+  left: 46.5vw;
+  object-fit: cover;
+  width: 100px;
+  
+}
+
+.wideTd {
+  width: 400px;
 }
 
 @font-face {
