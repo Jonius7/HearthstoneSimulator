@@ -25,7 +25,9 @@ const Simulator = () => {
     }
 
     const [selectedOption, setSelectedOption] = useState();
+    const [selectedOption2, setSelectedOption2] = useState();
     const [options, setOptions] =  useState([]);
+    const [options2, setOptions2] =  useState([]);
     //how to separate to create multiple instances
 
     useEffect(() => {
@@ -46,6 +48,27 @@ const Simulator = () => {
           }
         };
         getOptions();
+    }, []);
+
+    //solution to options2
+    useEffect(() => {
+        const getOptions2 = async () => {
+          try {
+            const response = await fetch("/data/cards.collectible.json");
+            const options2 = await response.json();
+            console.log(options2);
+            setOptions2(
+              options2.map(({ id, name, dbfId }) => ({
+                dbfId,
+                label: name,
+                value: id
+              }))
+            );
+          } catch (error) {
+            // ignore
+          }
+        };
+        getOptions2();
     }, []);
 
     const addCardItem = () => {
@@ -73,6 +96,11 @@ const Simulator = () => {
     const handleSetSelectedOption = e => {
         //console.log("Selected Value");
         setSelectedOption(e.value);
+    }
+
+    const handleSetSelectedOption2 = e => {
+        //console.log("Selected Value");
+        setSelectedOption2(e.value);
     }
 
     //Mana Crystals
@@ -243,20 +271,20 @@ const Simulator = () => {
                         <td class="wideTd">
                             <Select
                                 className="cards"
-                                defaultValue={selectedOption}
-                                onChange={handleSetSelectedOption}
-                                options={options}
+                                defaultValue={selectedOption2}
+                                onChange={handleSetSelectedOption2}
+                                options={options2}
                                 required
                                 isClearable={false}
-                                id="name"
+                                id="name2"
                             />
                             <img 
                                 className="card-image" 
-                                src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${selectedOption}.png`} 
-                                alt={selectedOption}
+                                src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${selectedOption2}.png`} 
+                                alt={selectedOption2}
                                 style={{top: "70vh", left: `calc(46.5vw + ${cardPosition * 6}vw)`}}>
                             </img>
-                            <div>Selected Option: {selectedOption}</div>
+                            <div>Selected Option: {selectedOption2}</div>
                         </td>
                         <td>
                             <button onClick={handleIncCardPosition}>+</button>
