@@ -3,19 +3,20 @@ import Select from "react-select";
 import cards from './cards.json';
 import Autocomplete from "./AutoComplete";
 import cardDivs from "./cardDivs";
+import Board from "./Board";
 //import board from './images/board.webp';
+
 
 const Simulator = () => {
     const [manaCrystals, setManaCrystals] = useState(1);
     const classes = ['Death Knight', 'Demon Hunter', 'Druid', 'Hunter', 
-    'Mage', 'Paladin', 'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior']
+    'Mage', 'Paladin', 'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior'];
     const [player1Class, setPlayer1Class] = useState(2);
     const [player2Class, setPlayer2Class] = useState(4);
     const [player1Health, setPlayer1Health] = useState(30);
     const [player2Health, setPlayer2Health] = useState(30);
 
-    const [cardPosition, setCardPosition] = useState(0);
-    const [cardPosition2, setCardPosition2] = useState(0);
+
 
 
     const jsonStringData = JSON.stringify(cards);
@@ -71,6 +72,11 @@ const Simulator = () => {
         };
         getOptions2();
     }, []);
+
+    let cardsArr = [];
+    for (let i = 0; i <= 2; i++) {
+        
+    }
 
     const addCardItem = () => {
 
@@ -182,30 +188,6 @@ const Simulator = () => {
         }
     }
 
-    const handleIncCardPosition = () => {
-        if (cardPosition < 3) {
-            setCardPosition(cardPosition + 1);
-        }
-    }
-
-    const handleDecCardPosition = () => {
-        if (cardPosition > -3) {
-            setCardPosition(cardPosition - 1);
-        }
-    }
-
-    const handleIncCardPosition2 = () => {
-        if (cardPosition2 < 3) {
-            setCardPosition2(cardPosition2 + 1);
-        }
-    }
-
-    const handleDecCardPosition2 = () => {
-        if (cardPosition2 > -3) {
-            setCardPosition2(cardPosition2 - 1);
-        }
-    }
-
     return (
         <div className="Simulator">
             <p>Mana Crystals</p>
@@ -252,67 +234,12 @@ const Simulator = () => {
                 </tr>
                 
             </table>
+            <Board />
+            <Board />
             {/*<Autocomplete
                 suggestions={jsonNameData}
             />*/}
-            <div className="cards-row">
-                <table>
-                    <tr>
-                        <td class="wideTd">
-                            <Select
-                                className="cards"
-                                defaultValue={selectedOption}
-                                onChange={handleSetSelectedOption}
-                                options={options}
-                                required
-                                isClearable={false}
-                                id="name"
-                            />
-                            <img 
-                                className="card-image" 
-                                src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${selectedOption}.png`} 
-                                alt={selectedOption}
-                                style={{left: `calc(46.5vw + ${cardPosition * 6}vw)`}}>
-                            </img>
-                            <div>Selected Option: {selectedOption}</div>
-                        </td>
-                        <td>
-                            <button onClick={handleIncCardPosition}>+</button>
-                            <button onClick={handleDecCardPosition}>-</button>
-                            <p>{cardPosition}</p>
-                        </td>
-                        <td class="wideTd">
-                            <Select
-                                className="cards"
-                                defaultValue={selectedOption2}
-                                onChange={handleSetSelectedOption2}
-                                options={options2}
-                                required
-                                isClearable={false}
-                                id="name2"
-                            />
-                            <img 
-                                className="card-image" 
-                                src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${selectedOption2}.png`} 
-                                alt={selectedOption2}
-                                style={{top: "70vh", left: `calc(46.5vw + ${cardPosition2 * 6}vw)`}}>
-                            </img>
-                            <div>Selected Option: {selectedOption2}</div>
-                        </td>
-                        <td>
-                            <button onClick={handleIncCardPosition2}>+</button>
-                            <button onClick={handleDecCardPosition2}>-</button>
-                            <p>{cardPosition2}</p>
-                        </td>
-                        <td>
-                            <cardDivs
-                                className="card-divs"
-                                state="1"
-                            />
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            
         </div>
     );
 };
