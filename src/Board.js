@@ -128,7 +128,7 @@ const Board = () => {
                             className="card-image" 
                             src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${selectedOption2}.png`} 
                             alt={selectedOption2}
-                            style={{top: "70vh", left: `calc(46.5vw + ${cardPosition2 * 6}vw)`}}>
+                            style={{top: "35vh", left: `calc(46.5vw + ${cardPosition2 * 6}vw)`}}>
                         </img>
                         <div>Selected Option: {selectedOption2}</div>
                     </td>

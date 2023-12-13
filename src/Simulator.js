@@ -4,6 +4,7 @@ import cards from './cards.json';
 import Autocomplete from "./AutoComplete";
 import cardDivs from "./cardDivs";
 import Board from "./Board";
+import CardSelector from "./CardSelector";
 //import board from './images/board.webp';
 
 
@@ -234,8 +235,10 @@ const Simulator = () => {
                 </tr>
                 
             </table>
-            <Board />
-            <Board />
+            
+            <CardSelector />
+            {/*<Board />
+            <Board />*/}
             {/*<Autocomplete
                 suggestions={jsonNameData}
             />*/}

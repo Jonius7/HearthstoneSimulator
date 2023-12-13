@@ -162,7 +162,7 @@ input {
 
 .card-image {
   position: absolute;
-  top: 55vh;
+  top: 15vh;
   left: 46.5vw;
   object-fit: cover;
   width: 100px;
@@ -177,4 +177,9 @@ input {
   font-family: 'Belwe Bold';
   src: local('Belwe Bold'),
     url('./fonts/Belwe Bold.otf');
+}
+
+
+.cards-row {
+  position: absolute;
 }
