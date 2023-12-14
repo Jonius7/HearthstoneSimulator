@@ -237,6 +237,7 @@ const Simulator = () => {
             </table>
             
             <CardSelector />
+            
             {/*<Board />
             <Board />*/}
             {/*<Autocomplete

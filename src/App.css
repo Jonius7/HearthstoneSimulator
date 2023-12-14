@@ -183,3 +183,8 @@ input {
 .cards-row {
   position: absolute;
 }
+
+
+.hidden {
+  display: none; 
+}
