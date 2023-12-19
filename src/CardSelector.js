@@ -13,7 +13,7 @@ const CardSelector = () => {
         <div>
             {/*<input type="submit" value="Select Cards" onClick={onClick} />
             { showCardSelector ? <Board /> : null }*/}
-            <button onClick={toggle}>Select Cards</button>
+            
             <div className={showCardSelector ? 'hidden' : ''}>
                 {<Board />}
             </div>

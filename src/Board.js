@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Select from "react-select";
 import cards from './cards.json';
+import CardImages from './CardImages';
 
 const Board = () => {
     const [cardPosition, setCardPosition] = useState(0);
@@ -8,9 +9,15 @@ const Board = () => {
     
     const [selectedOption, setSelectedOption] = useState();
     const [selectedOption2, setSelectedOption2] = useState();
+    const [player, setPlayer] =  useState(1);
+    const [player2, setPlayer2] =  useState(2);
     const [options, setOptions] =  useState([]);
     const [options2, setOptions2] =  useState([]);
     //how to separate to create multiple instances
+
+    const [showCardSelector, setShowCardSelector] = React.useState(false);
+    let toggle = () => setShowCardSelector((showCardSelector) => !showCardSelector);
+
 
     useEffect(() => {
         const getOptions = async () => {
@@ -63,6 +70,13 @@ const Board = () => {
         setSelectedOption2(e.value);
     }
 
+    const handleSetPlayer = e => {
+        setPlayer(e.value);
+    }
+    const handleSetPlayer2 = e => {
+        setPlayer2(e.value);
+    }
+
     const handleIncCardPosition = () => {
         if (cardPosition < 3) {
             setCardPosition(cardPosition + 1);
@@ -88,63 +102,59 @@ const Board = () => {
     }
 
     return (
-        <div className="cards-row">
-            <table>
-                <tr>
-                    <td class="wideTd">
-                        <Select
-                            className="cards"
-                            defaultValue={selectedOption}
-                            onChange={handleSetSelectedOption}
-                            options={options}
-                            required
-                            isClearable={false}
-                            id="name"
-                        />
-                        <img 
-                            className="card-image" 
-                            src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${selectedOption}.png`} 
-                            alt={selectedOption}
-                            style={{left: `calc(46.5vw + ${cardPosition * 6}vw)`}}>
-                        </img>
-                        <div>Selected Option: {selectedOption}</div>
-                    </td>
-                    <td>
-                        <button onClick={handleIncCardPosition}>+</button>
-                        <button onClick={handleDecCardPosition}>-</button>
-                        <p>{cardPosition}</p>
-                    </td>
-                    <td class="wideTd">
-                        <Select
-                            className="cards"
-                            defaultValue={selectedOption2}
-                            onChange={handleSetSelectedOption2}
-                            options={options2}
-                            required
-                            isClearable={false}
-                            id="name2"
-                        />
-                        <img 
-                            className="card-image" 
-                            src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${selectedOption2}.png`} 
-                            alt={selectedOption2}
-                            style={{top: "35vh", left: `calc(46.5vw + ${cardPosition2 * 6}vw)`}}>
-                        </img>
-                        <div>Selected Option: {selectedOption2}</div>
-                    </td>
-                    <td>
-                        <button onClick={handleIncCardPosition2}>+</button>
-                        <button onClick={handleDecCardPosition2}>-</button>
-                        <p>{cardPosition2}</p>
-                    </td>
-                    <td>
-                        <cardDivs
-                            className="card-divs"
-                            state="1"
-                        />
-                    </td>
-                </tr>
-            </table>
+        <div>
+            <button onClick={toggle}>Select Cards</button>
+            <div className={`cards-row ${showCardSelector ? 'hidden' : ''}`}>
+                <table>
+                    <tr>
+                        <td class="wideTd">
+                            <Select
+                                className="cards"
+                                defaultValue={selectedOption}
+                                onChange={handleSetSelectedOption}
+                                options={options}
+                                required
+                                isClearable={false}
+                                id="name"
+                            />
+                            <div>Selected Option: {selectedOption}</div>
+                        </td>
+                        <td>
+                            <button onClick={handleIncCardPosition}>+</button>
+                            <button onClick={handleDecCardPosition}>-</button>
+                            <p>{cardPosition}</p>
+                        </td>
+                        <td class="wideTd">
+                            <Select
+                                className="cards"
+                                defaultValue={selectedOption2}
+                                onChange={handleSetSelectedOption2}
+                                options={options2}
+                                required
+                                isClearable={false}
+                                id="name2"
+                            />
+                            
+                            <div>Selected Option: {selectedOption2}</div>
+                        </td>
+                        <td>
+                            <button onClick={handleIncCardPosition2}>+</button>
+                            <button onClick={handleDecCardPosition2}>-</button>
+                            <p>{cardPosition2}</p>
+                        </td>
+                        <td>
+                            <cardDivs
+                                className="card-divs"
+                                state="1"
+                            />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div className="images-row">
+                <CardImages selectedOption={selectedOption} cardPosition={cardPosition} player={player} />
+                <CardImages selectedOption={selectedOption2} cardPosition={cardPosition2} player={player2} />
+            </div>
         </div>
     );
 };
