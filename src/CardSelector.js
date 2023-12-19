@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from "react-select";
 import Board from "./Board";
 
-const CardSelector = () => {
+const CardSelector = (props) => {
     const [showCardSelector, setShowCardSelector] = React.useState(false);
     let toggle = () => setShowCardSelector((showCardSelector) => !showCardSelector);
     {/*let style = {};
@@ -15,7 +15,7 @@ const CardSelector = () => {
             { showCardSelector ? <Board /> : null }*/}
             
             <div className={showCardSelector ? 'hidden' : ''}>
-                {<Board />}
+                {<Board cardPosition={props.cardPosition}/>}
             </div>
         </div>
     )

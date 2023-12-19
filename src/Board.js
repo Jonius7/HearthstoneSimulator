@@ -3,9 +3,9 @@ import Select from "react-select";
 import cards from './cards.json';
 import CardImages from './CardImages';
 
-const Board = () => {
-    const [cardPosition, setCardPosition] = useState(0);
-    const [cardPosition2, setCardPosition2] = useState(0);
+const Board = (props) => {
+    const [cardPosition, setCardPosition] = useState(props.cardPosition);
+    const [cardPosition2, setCardPosition2] = useState(props.cardPosition);
     
     const [selectedOption, setSelectedOption] = useState();
     const [selectedOption2, setSelectedOption2] = useState();
@@ -15,7 +15,7 @@ const Board = () => {
     const [options2, setOptions2] =  useState([]);
     //how to separate to create multiple instances
 
-    const [showCardSelector, setShowCardSelector] = React.useState(false);
+    const [showCardSelector, setShowCardSelector] = React.useState(true);
     let toggle = () => setShowCardSelector((showCardSelector) => !showCardSelector);
 
 

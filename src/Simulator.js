@@ -235,8 +235,17 @@ const Simulator = () => {
                 </tr>
                 
             </table>
-            
-            <CardSelector />
+            <table>
+                <tr>
+                    <td><CardSelector cardPosition="-3"/></td>
+                    <td><CardSelector cardPosition="-2"/></td>
+                    <td><CardSelector cardPosition="-1"/></td>
+                    <td><CardSelector cardPosition="0"/></td>
+                    <td><CardSelector cardPosition="1"/></td>
+                    <td><CardSelector cardPosition="2"/></td>
+                    <td><CardSelector cardPosition="3"/></td>
+                </tr>
+            </table>
             
             {/*<Board />
             <Board />*/}
