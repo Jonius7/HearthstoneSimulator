@@ -233,7 +233,6 @@ const Simulator = () => {
                         <div className="Player2Health" style={{color: player2Health < 30 ? "#D20403" : "white"}}>{player2Health}</div>
                     </td>
                 </tr>
-                
             </table>
             <table>
                 <tr>
