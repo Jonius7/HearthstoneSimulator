@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from "react-select";
 import cards from './cards.json';
 import CardImages from './CardImages';
+import CustomMenuList from './CustomMenuList';
 
 const Board = (props) => {
     const [cardPosition, setCardPosition] = useState(props.cardPosition);
@@ -113,6 +114,9 @@ const Board = (props) => {
                                 defaultValue={selectedOption}
                                 onChange={handleSetSelectedOption}
                                 options={options}
+                                components={{
+                                    MenuList: CustomMenuList,
+                                }}
                                 required
                                 isClearable={false}
                                 id="name"
@@ -130,6 +134,9 @@ const Board = (props) => {
                                 defaultValue={selectedOption2}
                                 onChange={handleSetSelectedOption2}
                                 options={options2}
+                                components={{
+                                    MenuList: CustomMenuList,
+                                }}
                                 required
                                 isClearable={false}
                                 id="name2"
