@@ -205,18 +205,16 @@ const Simulator = () => {
                         <button onClick={handleNextPlayer1Class}>+</button>
                         <button onClick={handlePrevPlayer1Class}>-</button>
                         <p>{classes[player1Class]}</p>
-                        <div className="Player1Class" style={{backgroundImage: `url("images/heroes/${classes[player1Class]}.png")`}}>
-
-                        </div>
+                        <div className="Player1Class" style={{backgroundImage: `url("images/heroes/${classes[player1Class]}.png")`}}></div>
+                        <div className="Player1HeroPower" style={{backgroundImage: `url("images/hero_powers/HERO_${classes[player1Class]}.webp")`}}></div>
                     </td>
                     <td>
                         <p>Player 2 Class</p>
                         <button onClick={handleNextPlayer2Class}>+</button>
                         <button onClick={handlePrevPlayer2Class}>-</button>
                         <p>{classes[player2Class]}</p>
-                        <div className="Player2Class" style={{backgroundImage: `url("images/heroes/${classes[player2Class]}.png")`}}>
-
-                        </div>
+                        <div className="Player2Class" style={{backgroundImage: `url("images/heroes/${classes[player2Class]}.png")`}}></div>
+                        <div className="Player2HeroPower" style={{backgroundImage: `url("images/hero_powers/HERO_${classes[player2Class]}.webp")`}}></div>
                     </td>
                     <td>
                         <p>Player 1 Health</p>

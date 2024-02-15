@@ -61,8 +61,8 @@ button {
 
 .ManaBar {
   position: absolute;
-  top: 92vh;
-  left: 59vw;
+  top: 97vh;
+  left: 63vw;
   background-image: url("images/ManaCrystal.png");
   background-repeat: repeat-x;
   height: 31px;
@@ -91,6 +91,30 @@ button {
   object-fit: cover;
   height: 121px;
   width: 429px;
+}
+
+.Player1HeroPower {
+  position: absolute;
+  top: 84vh;
+  left: 52vw;
+  background-repeat: no-repeat;
+  background-size: 65%;
+  object-fit: cover;
+  clip-path: circle(15.5% at 34% 20%);
+  height: 306px;
+  width: 235px;
+}
+
+.Player2HeroPower {
+  position: absolute;
+  top: 45vh;
+  left: 52vw;
+  background-repeat: no-repeat;
+  background-size: 65%;
+  object-fit: cover;
+  clip-path: circle(15.5% at 34% 20%);
+  height: 306px;
+  width: 235px;
 }
 
 .Player1Health {
@@ -165,7 +189,11 @@ input {
   top: 15vh;
   left: 46.5vw;
   object-fit: cover;
-  width: 100px;
+  clip-path: ellipse(28% 30% at 50% 30%);
+  width: 128px;
+  height: 194px;
+  background-repeat: no-repeat;
+  object-position: top;
   
 }
 
@@ -188,5 +216,3 @@ input {
 .hidden {
   display: none; 
 }
-
-
