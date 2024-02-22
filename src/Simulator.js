@@ -5,6 +5,8 @@ import Autocomplete from "./AutoComplete";
 import cardDivs from "./cardDivs";
 import Board from "./Board";
 import CardSelector from "./CardSelector";
+import CardHand from "./CardHand";
+import "./scss/App.scss";
 //import board from './images/board.webp';
 
 
@@ -243,7 +245,8 @@ const Simulator = () => {
                     <td><CardSelector cardPosition="3"/></td>
                 </tr>
             </table>
-            
+            <CardHand />
+
             {/*<Board />
             <Board />*/}
             {/*<Autocomplete

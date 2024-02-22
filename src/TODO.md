@@ -5,3 +5,7 @@ Improve handling of Select Cards selectors
 fixed positioning (CSS)
 
 Increase Image Loading speed?
+
+
+Being able to choose number of cards in hand
+Being able to select which card individually
