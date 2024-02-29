@@ -197,8 +197,16 @@ input {
   
 }
 
+.floating {
+  position: absolute;
+}
+
 .wideTd {
   width: 300px;
+}
+
+.narrowTd {
+  width: 150px;
 }
 
 @font-face {

@@ -13,30 +13,30 @@
 
 
 .cardshand {
-    position: absolute;
-    top: 95vw;
-    left: 50vw;
-    
-    @include fan(5, 50deg);
-
-    &:hover {
-      @include fan(5, 60deg);
-    }
-
-    
-  }
+  position: absolute;
+  top: 75vw;
+  left: 50vw;
   
-  .card {
-    //background: white;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 134px;
-    width: 90px;
-    border-radius: 5px;
-    position: absolute;
-    //box-shadow: 0 0 30px transparentize(black, 0.8);
-    left: 50%;
-    top: 70%;
-    transform-origin: center 300%;
-    transition: transform 1s ease-out;
+  @include fan(5, 50deg);
+
+  &:hover {
+    @include fan(5, 60deg);
   }
+
+  
+}
+  
+.card {
+  //background: white;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 134px;
+  width: 90px;
+  border-radius: 5px;
+  position: absolute;
+  //box-shadow: 0 0 30px transparentize(black, 0.8);
+  left: 50%;
+  top: 70%;
+  transform-origin: center 300%;
+  transition: transform 1s ease-out;
+}
