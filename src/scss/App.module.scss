@@ -1,0 +1,16 @@
+$number-of-cards: 5;
+
+@mixin fan($count, $angle) {
+    $offset: $angle / 2;
+    @for $i from 1 through $count {
+        $increment: $angle / ($count + 1);
+        div:nth-child(#{$i}) {
+        transform:
+            translate(-50%, -50%) rotate(-$offset + $increment * $i);
+        }
+    }
+}
+
+:export {
+    numberofcards: $number-of-cards;
+}

@@ -1,4 +1,4 @@
-
+@import 'App.module.scss';
 
 @mixin fan($count, $angle) {
   $offset: $angle / 2;
@@ -14,17 +14,26 @@
 
 .cardshand {
   position: absolute;
-  top: 75vw;
+  top: 104vh;
   left: 50vw;
   
+  @include fan($number-of-cards, 50deg);
+
+  &:hover {
+    @include fan($number-of-cards, 60deg);
+  }
+}
+
+.five-cards {
   @include fan(5, 50deg);
 
   &:hover {
     @include fan(5, 60deg);
   }
-
-  
 }
+
+
+
   
 .card {
   //background: white;

@@ -40,7 +40,7 @@ const Simulator = () => {
           try {
             const response = await fetch("/data/cards.collectible.json");
             const options = await response.json();
-            console.log(options);
+            //console.log(options);
             setOptions(
               options.map(({ id, name, dbfId }) => ({
                 dbfId,
@@ -61,7 +61,7 @@ const Simulator = () => {
           try {
             const response = await fetch("/data/cards.collectible.json");
             const options2 = await response.json();
-            console.log(options2);
+            //console.log(options2);
             setOptions2(
               options2.map(({ id, name, dbfId }) => ({
                 dbfId,
