@@ -1,5 +1,16 @@
 @import 'App.module.scss';
 
+
+:root {
+  --number-of-cards: 5;
+}
+
+@property --number-of-cards {
+  syntax: "<number>";
+  initial-value: 5;
+  inherits: true;
+}
+
 @mixin fan($count, $angle) {
   $offset: $angle / 2;
   @for $i from 1 through $count {
@@ -24,7 +35,41 @@
   }
 }
 
-.five-cards {
+//Number of cards CSS
+
+.cards-1 {
+  @include fan(1, 50deg);
+
+  &:hover {
+    @include fan(1, 60deg);
+  }
+}
+
+.cards-2 {
+  @include fan(2, 50deg);
+
+  &:hover {
+    @include fan(2, 60deg);
+  }
+}
+
+.cards-3 {
+  @include fan(3, 50deg);
+
+  &:hover {
+    @include fan(3, 60deg);
+  }
+}
+
+.cards-4 {
+  @include fan(4, 50deg);
+
+  &:hover {
+    @include fan(4, 60deg);
+  }
+}
+
+.cards-5 {
   @include fan(5, 50deg);
 
   &:hover {
@@ -32,6 +77,45 @@
   }
 }
 
+.cards-6 {
+  @include fan(6, 50deg);
+
+  &:hover {
+    @include fan(6, 60deg);
+  }
+}
+
+.cards-7 {
+  @include fan(7, 50deg);
+
+  &:hover {
+    @include fan(7, 60deg);
+  }
+}
+
+.cards-8 {
+  @include fan(8, 50deg);
+
+  &:hover {
+    @include fan(8, 60deg);
+  }
+}
+
+.cards-9 {
+  @include fan(9, 50deg);
+
+  &:hover {
+    @include fan(9, 60deg);
+  }
+}
+
+.cards-10 {
+  @include fan(10, 50deg);
+
+  &:hover {
+    @include fan(10, 60deg);
+  }
+}
 
 
   
