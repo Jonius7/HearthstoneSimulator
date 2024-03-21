@@ -17,21 +17,28 @@ const CardHandBoard = (props) => {
     const [selectedOption3, setSelectedOption3] = useState();
     const [selectedOption4, setSelectedOption4] = useState();
     const [selectedOption5, setSelectedOption5] = useState();
-    const [selectedOptions, setSelectedOptionsList] = useState([
-        { id: 1, value: 'card1' }, { id: 2, value: 'card2' }, 
-        { id: 3, value: 'card3' }, { id: 4, value: 'card4' }, { id: 5, value: 'card5' }
+
+    let [selectedOptions, setSelectedOptionsList] = useState([
+        'AT_024', 'card2', 'card3', 'card4', 'card5'
     ]);
+
     const [player, setPlayer] =  useState(1);
     const [player2, setPlayer2] =  useState(2);
     const [options, setOptions] =  useState([]);
     const [options2, setOptions2] =  useState([]);
     const [NumberofCards, setNumberofCards] = useState(5);
     const cardElements = [];
+    
+    /*
     for (let i = 0; i < NumberofCards; i++) {
         const selectedOptionName = "selectedOption" + NumberofCards;
-        //cardElements.push(<Card selectedOption={selectedOption1}/>);
-        cardElements.push(<Card selectedOption={selectedOptions[NumberofCards]}/>);
-    }
+        cardElements.push(<Card selectedOption={selectedOption1}/>);
+        //select from list
+        //cardElements.push(<Card selectedOption={selectedOptions[NumberofCards-1]}/>);
+    }*/
+    
+    
+
     console.log(variables);
     //how to separate to create multiple instances
 
@@ -76,9 +83,11 @@ const CardHandBoard = (props) => {
       setSelectedOption3(e.value);
     }
 
-    const handleSetSelectedOptionsList = e => {
-      setSelectedOptionsList(e.value);
-    }
+    const handleSetSelectedOptionsList = (index, newItem) => {
+        const updatedOptionsList = [...selectedOptions];
+        updatedOptionsList[index] = newItem;
+        setSelectedOptionsList(updatedOptionsList);
+    };
 
     const handleSelectedOptionsListChange = (id) => {
         setSelectedOptionsList((prevItems) =>
@@ -115,8 +124,8 @@ const CardHandBoard = (props) => {
                       <td class="narrowTd">
                           <Select
                               className="cards"
-                              defaultValue={selectedOption1}
-                              onChange={handleSetSelectedOption}
+                              defaultValue={selectedOptions[0]}
+                              onChange={handleSetSelectedOptionsList}
                               options={options}
                               components={{
                                   MenuList: CustomMenuList,
@@ -130,7 +139,7 @@ const CardHandBoard = (props) => {
                       <td class="narrowTd">
                           <Select
                               className="cards"
-                              defaultValue={selectedOption2}
+                              defaultValue={selectedOptions[1]}
                               onChange={handleSetSelectedOption2}
                               options={options}
                               components={{
@@ -168,7 +177,9 @@ const CardHandBoard = (props) => {
             </div>
 
             <div className={`cardshand cards-${NumberofCards}`}>
-                {cardElements}
+                {selectedOptions.map((item, index) => (
+                    <Card selectedOption={item}/>
+                ))}
             </div>
         </div>
     );
