@@ -19,7 +19,7 @@ const CardHandBoard = (props) => {
     const [selectedOption5, setSelectedOption5] = useState();
 
     let [selectedOptions, setSelectedOptionsList] = useState([
-        'AT_024', 'card2', 'card3', 'card4', 'card5'
+        'card1', 'card2', 'card3', 'card4', 'card5'
     ]);
 
     const [player, setPlayer] =  useState(1);
@@ -39,7 +39,7 @@ const CardHandBoard = (props) => {
     
     
 
-    console.log(variables);
+    //console.log(variables);
     //how to separate to create multiple instances
 
     const [showCardSelector, setShowCardSelector] = React.useState(true);
@@ -83,9 +83,10 @@ const CardHandBoard = (props) => {
       setSelectedOption3(e.value);
     }
 
-    const handleSetSelectedOptionsList = (index, newItem) => {
+    const handleSetSelectedOptionsList = (selectedOption, index) => {
         const updatedOptionsList = [...selectedOptions];
-        updatedOptionsList[index] = newItem;
+        updatedOptionsList[index] = selectedOption.value;
+        console.log(updatedOptionsList);
         setSelectedOptionsList(updatedOptionsList);
     };
 
@@ -125,7 +126,7 @@ const CardHandBoard = (props) => {
                           <Select
                               className="cards"
                               defaultValue={selectedOptions[0]}
-                              onChange={handleSetSelectedOptionsList}
+                              onChange={(selectedOption) => handleSetSelectedOptionsList(selectedOption, 0)}
                               options={options}
                               components={{
                                   MenuList: CustomMenuList,
@@ -140,7 +141,7 @@ const CardHandBoard = (props) => {
                           <Select
                               className="cards"
                               defaultValue={selectedOptions[1]}
-                              onChange={handleSetSelectedOption2}
+                              onChange={(selectedOption) => handleSetSelectedOptionsList(selectedOption, 1)}
                               options={options}
                               components={{
                                   MenuList: CustomMenuList,
@@ -154,8 +155,38 @@ const CardHandBoard = (props) => {
                       <td class="narrowTd">
                           <Select
                               className="cards"
-                              defaultValue={selectedOption3}
-                              onChange={handleSetSelectedOption3}
+                              defaultValue={selectedOptions[2]}
+                              onChange={(selectedOption) => handleSetSelectedOptionsList(selectedOption, 2)}
+                              options={options}
+                              components={{
+                                  MenuList: CustomMenuList,
+                              }}
+                              required
+                              isClearable={false}
+                              id="name"
+                          />
+                          {/*<div>Selected Option: {selectedOption2}</div>*/}
+                      </td>
+                      <td class="narrowTd">
+                          <Select
+                              className="cards"
+                              defaultValue={selectedOptions[3]}
+                              onChange={(selectedOption) => handleSetSelectedOptionsList(selectedOption, 3)}
+                              options={options}
+                              components={{
+                                  MenuList: CustomMenuList,
+                              }}
+                              required
+                              isClearable={false}
+                              id="name"
+                          />
+                          {/*<div>Selected Option: {selectedOption2}</div>*/}
+                      </td>
+                      <td class="narrowTd">
+                          <Select
+                              className="cards"
+                              defaultValue={selectedOptions[4]}
+                              onChange={(selectedOption) => handleSetSelectedOptionsList(selectedOption, 4)}
                               options={options}
                               components={{
                                   MenuList: CustomMenuList,
@@ -171,6 +202,24 @@ const CardHandBoard = (props) => {
                               className="card-divs"
                               state="1"
                           />
+                      </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="narrowTd">
+                          <Select
+                              className="cards"
+                              defaultValue={selectedOptions[5]}
+                              onChange={(selectedOption) => handleSetSelectedOptionsList(selectedOption, 5)}
+                              options={options}
+                              components={{
+                                  MenuList: CustomMenuList,
+                              }}
+                              required
+                              isClearable={false}
+                              id="name"
+                          />
+                          {/*<div>Selected Option: {selectedOption2}</div>*/}
                       </td>
                     </tr>
                 </table>

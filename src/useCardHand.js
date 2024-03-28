@@ -8,7 +8,7 @@ export function useCardHand(props) {
             try {
               const response = await fetch("/data/cards.collectible.json");
               const options = await response.json();
-              console.log(options);
+              //console.log(options);
               setOptions(
                 options.map(({ id, name, dbfId }) => ({
                   dbfId,
