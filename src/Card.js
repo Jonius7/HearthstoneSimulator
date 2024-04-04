@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import Draggable from 'react-draggable';
 
 const Card = (props) => {
 
 
     return (
-        <div class="card" style={{backgroundImage: `url("https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${props.selectedOption}.png")`}}></div>
+        <div className="card" style={{backgroundImage: `url("https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${props.selectedOption}.png")`}}></div>
     );
 };
 

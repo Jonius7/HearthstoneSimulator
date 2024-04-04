@@ -7,6 +7,7 @@ import Card from './Card';
 import CardHandComponent from './CardHandComponent';
 import { useCardHand } from './useCardHand';
 import variables from './scss/App.module.scss';
+import Draggable from 'react-draggable';
 
 const CardHandBoard = (props) => {
     const [cardPosition, setCardPosition] = useState(props.cardPosition);
@@ -207,20 +208,80 @@ const CardHandBoard = (props) => {
                     <tr>
                         <td></td>
                         <td class="narrowTd">
-                          <Select
-                              className="cards"
-                              defaultValue={selectedOptions[5]}
-                              onChange={(selectedOption) => handleSetSelectedOptionsList(selectedOption, 5)}
-                              options={options}
-                              components={{
-                                  MenuList: CustomMenuList,
-                              }}
-                              required
-                              isClearable={false}
-                              id="name"
-                          />
-                          {/*<div>Selected Option: {selectedOption2}</div>*/}
-                      </td>
+                            <Select
+                                className="cards"
+                                defaultValue={selectedOptions[5]}
+                                onChange={(selectedOption) => handleSetSelectedOptionsList(selectedOption, 5)}
+                                options={options}
+                                components={{
+                                    MenuList: CustomMenuList,
+                                }}
+                                required
+                                isClearable={false}
+                                id="name"
+                            />
+                            {/*<div>Selected Option: {selectedOption2}</div>*/}
+                        </td>
+                        <td class="narrowTd">
+                            <Select
+                                className="cards"
+                                defaultValue={selectedOptions[6]}
+                                onChange={(selectedOption) => handleSetSelectedOptionsList(selectedOption, 6)}
+                                options={options}
+                                components={{
+                                    MenuList: CustomMenuList,
+                                }}
+                                required
+                                isClearable={false}
+                                id="name"
+                            />
+                            {/*<div>Selected Option: {selectedOption2}</div>*/}
+                        </td>
+                        <td class="narrowTd">
+                            <Select
+                                className="cards"
+                                defaultValue={selectedOptions[7]}
+                                onChange={(selectedOption) => handleSetSelectedOptionsList(selectedOption, 7)}
+                                options={options}
+                                components={{
+                                    MenuList: CustomMenuList,
+                                }}
+                                required
+                                isClearable={false}
+                                id="name"
+                            />
+                            {/*<div>Selected Option: {selectedOption2}</div>*/}
+                        </td>
+                        <td class="narrowTd">
+                            <Select
+                                className="cards"
+                                defaultValue={selectedOptions[8]}
+                                onChange={(selectedOption) => handleSetSelectedOptionsList(selectedOption, 8)}
+                                options={options}
+                                components={{
+                                    MenuList: CustomMenuList,
+                                }}
+                                required
+                                isClearable={false}
+                                id="name"
+                            />
+                            {/*<div>Selected Option: {selectedOption2}</div>*/}
+                        </td>
+                        <td class="narrowTd">
+                            <Select
+                                className="cards"
+                                defaultValue={selectedOptions[9]}
+                                onChange={(selectedOption) => handleSetSelectedOptionsList(selectedOption, 9)}
+                                options={options}
+                                components={{
+                                    MenuList: CustomMenuList,
+                                }}
+                                required
+                                isClearable={false}
+                                id="name"
+                            />
+                            {/*<div>Selected Option: {selectedOption2}</div>*/}
+                        </td>
                     </tr>
                 </table>
             </div>

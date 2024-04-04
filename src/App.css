@@ -225,3 +225,17 @@ input {
 .hidden {
   display: none; 
 }
+
+/* boxes */
+.app {
+  width: 30%;
+  height: 30vh;
+}
+
+.box {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: blue;
+  transform: translate(-50%, -50%);
+}

@@ -35,6 +35,8 @@ const Simulator = () => {
     const [options2, setOptions2] =  useState([]);
     //how to separate to create multiple instances
 
+    const [boxes, setBoxes] = useState([]);
+
     useEffect(() => {
         const getOptions = async () => {
           try {
@@ -101,6 +103,9 @@ const Simulator = () => {
                 <div>Selected Option: {selectedOption}</div>
             </div>
         );
+    }
+    const handleClick = ({ pageX, pageY }) => {
+        setBoxes((boxes) => [...boxes, {x: pageX, y: pageY }]);
     }
 
     const handleSetSelectedOption = e => {
@@ -252,6 +257,12 @@ const Simulator = () => {
             {/*<Autocomplete
                 suggestions={jsonNameData}
             />*/}
+
+            {/*<div className="app" onClick={handleClick}>
+                {boxes.map((box) => (
+                    <div className="box" style={{ left: box.x, top: box.y }}></div>
+                ))}
+            </div>*/}
             
         </div>
     );

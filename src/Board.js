@@ -123,11 +123,11 @@ const Board = (props) => {
                             />
                             <div>Selected Option: {selectedOption}</div>
                         </td>
-                        <td>
+                        {/*<td>
                             <button onClick={handleIncCardPosition}>+</button>
                             <button onClick={handleDecCardPosition}>-</button>
                             <p>{cardPosition}</p>
-                        </td>
+                        </td>*/}
                         <td class="wideTd">
                             <Select
                                 className="cards"
@@ -144,11 +144,11 @@ const Board = (props) => {
                             
                             <div>Selected Option: {selectedOption2}</div>
                         </td>
-                        <td>
+                        {/*<td>
                             <button onClick={handleIncCardPosition2}>+</button>
                             <button onClick={handleDecCardPosition2}>-</button>
                             <p>{cardPosition2}</p>
-                        </td>
+                        </td>*/}
                         <td>
                             <cardDivs
                                 className="card-divs"

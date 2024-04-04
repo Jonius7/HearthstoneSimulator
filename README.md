@@ -4,5 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Can currently change Player Class, Health, and search for cards
 
+Libraries used: react-select
+
 `npm install`
 `npm start`
