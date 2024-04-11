@@ -5,7 +5,9 @@ const Card = (props) => {
 
 
     return (
+
         <div className="card" style={{backgroundImage: `url("https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${props.selectedOption}.png")`}}></div>
+
     );
 };
 

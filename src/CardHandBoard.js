@@ -8,6 +8,7 @@ import CardHandComponent from './CardHandComponent';
 import { useCardHand } from './useCardHand';
 import variables from './scss/App.module.scss';
 import Draggable from 'react-draggable';
+import DragMove from './DragMove.jsx';
 
 const CardHandBoard = (props) => {
     const [cardPosition, setCardPosition] = useState(props.cardPosition);
@@ -71,6 +72,18 @@ const CardHandBoard = (props) => {
     useEffect(() => {
         initCardHandComponent();
     }, [])
+
+    const [translate, setTranslate] = useState({
+        x: 0,
+        y: 0
+    });
+
+    const handleDragMove = (e) => {
+        setTranslate({
+            x: translate.x + e.movementX,
+            y: translate.y + e.movementY
+        });
+    };
 
     const handleSetSelectedOption = e => {
       setSelectedOption(e.value);
@@ -288,7 +301,9 @@ const CardHandBoard = (props) => {
 
             <div className={`cardshand cards-${NumberofCards}`}>
                 {selectedOptions.map((item, index) => (
+                    {/*<DragMove onDragMove={handleDragMove}>*/}
                     <Card selectedOption={item}/>
+                    {/*</DragMove>*/}
                 ))}
             </div>
         </div>
