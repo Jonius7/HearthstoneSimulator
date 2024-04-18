@@ -8,6 +8,7 @@ import CardSelector from "./CardSelector";
 import CardHand from "./CardHand";
 import "./scss/App.scss";
 //import board from './images/board.webp';
+import Cookies from 'js-cookie';
 
 
 const Simulator = () => {
@@ -157,15 +158,48 @@ const Simulator = () => {
         }
     }
 
+    const handleSaveToLocalStorage = () => {
+        localStorage.setItem('player1Health', JSON.stringify(player1Health))
+    }
+
+    const handleLoadFromLocalStorage = () => {
+        /*const keys = ['player1Health', 'player2Health'];
+        const sets = ['setPlayer1Health', 'setPlayer2Health'];
+        const storedValues = []
+        for (let i = 1; i <= keys.length; i++) {
+            storedValues.push(localStorage.getItem(keys[i]));
+            if (storedValues[i] !== null) {
+                const calledFunction = window[sets[i]];
+                calledFunction(storedValues[i]);
+            }
+        }*/
+
+        
+        const storedValue1 = JSON.parse(localStorage.getItem('player1Health'));
+        const storedValue2 = JSON.parse(localStorage.getItem('player2Health'));
+        if (storedValue1 !== null) {
+            setPlayer1Health(storedValue1);
+        }
+        if (storedValue2 !== null) {
+            setPlayer2Health(storedValue2);
+        }
+    }
+
+    useEffect(() => {
+        handleLoadFromLocalStorage();
+    }, []);
+
     //Player 1 Health
     const handleIncPlayer1Health = () => {
         if (player1Health < 30) {
+            localStorage.setItem('player1Health', JSON.stringify(player1Health + 1))
             setPlayer1Health(player1Health + 1)
         }
     }
 
     const handleDecPlayer1Health = () => {
         if (player1Health > 0) {
+            localStorage.setItem('player1Health', JSON.stringify(player1Health - 1))
             setPlayer1Health(player1Health - 1)
         }
     }
@@ -173,12 +207,14 @@ const Simulator = () => {
     //Player 2 Health
     const handleIncPlayer2Health = () => {
         if (player2Health < 30) {
+            localStorage.setItem('player2Health', JSON.stringify(player2Health + 1))
             setPlayer2Health(player2Health + 1)
         }
     }
 
     const handleDecPlayer2Health = () => {
         if (player2Health > 0) {
+            localStorage.setItem('player2Health', JSON.stringify(player2Health - 1))
             setPlayer2Health(player2Health - 1)
         }
     }

@@ -98,10 +98,12 @@ const CardHandBoard = (props) => {
     }
 
     const handleSetSelectedOptionsList = (selectedOption, index) => {
-        const updatedOptionsList = [...selectedOptions];
-        updatedOptionsList[index] = selectedOption.value;
-        console.log(updatedOptionsList);
-        setSelectedOptionsList(updatedOptionsList);
+        if (selectedOption) {
+            const updatedOptionsList = [...selectedOptions];
+            updatedOptionsList[index] = selectedOption.value;
+            console.log(updatedOptionsList);
+            setSelectedOptionsList(updatedOptionsList);
+        }
     };
 
     const handleSelectedOptionsListChange = (id) => {
@@ -123,7 +125,7 @@ const CardHandBoard = (props) => {
         setNumberofCards(NumberofCards - 1)
       }
   }
-
+  
     return (
         <div>
             <button className="floating" onClick={toggle}>Select Hand</button>
@@ -301,9 +303,7 @@ const CardHandBoard = (props) => {
 
             <div className={`cardshand cards-${NumberofCards}`}>
                 {selectedOptions.map((item, index) => (
-                    {/*<DragMove onDragMove={handleDragMove}>*/}
                     <Card selectedOption={item}/>
-                    {/*</DragMove>*/}
                 ))}
             </div>
         </div>
