@@ -39,9 +39,8 @@
 
 /* Simulator CSS */
 
-.Simulator {
+.SimulatorControls {
   background-color: rgb(91, 91, 221);
-
 }
 
 button {
@@ -56,7 +55,9 @@ button {
 }
 
 .HS-board {
-  margin: auto;
+  position: absolute;
+  top: 38vh;
+  left: 14vw;
 }
 
 .ManaBar {
@@ -199,6 +200,7 @@ input {
 
 .floating {
   position: absolute;
+  top: 20vh;
 }
 
 .wideTd {

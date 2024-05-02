@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from "react-select";
 import cards from './cards.json';
 import CardImages from './CardImages';
+import CardDivs from "./cardDivs.js";
 import CustomMenuList from './CustomMenuList';
 import Card from './Card';
 import CardHandComponent from './CardHandComponent';

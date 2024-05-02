@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Select from "react-select";
 import cards from './cards.json';
+import CardDivs from "./cardDivs";
 import CardImages from './CardImages';
 import CustomMenuList from './CustomMenuList';
 

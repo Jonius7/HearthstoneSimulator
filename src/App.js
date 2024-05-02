@@ -7,7 +7,10 @@ function App() {
   return (
     <div className="App">
       <Simulator />
-      <img src={board} className="HS-board" alt="board" />
+      <div>
+        
+      </div>
+      
     </div>
   );
 }

@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Select from "react-select";
 import cards from './cards.json';
 import Autocomplete from "./AutoComplete";
-import cardDivs from "./cardDivs";
+import CardDivs from "./cardDivs";
 import Board from "./Board";
 import CardSelector from "./CardSelector";
 import CardHand from "./CardHand";
 import "./scss/App.scss";
-//import board from './images/board.webp';
+import board from './images/board.webp';
 import Cookies from 'js-cookie';
+
 
 
 const Simulator = () => {
@@ -122,12 +123,14 @@ const Simulator = () => {
     //Mana Crystals
     const handleAddCrystal = () => {
         if (manaCrystals < 10) {
+            localStorage.setItem('manaCrystals', JSON.stringify(manaCrystals + 1));
             setManaCrystals(manaCrystals + 1);
         }
     }
 
     const handleRemoveCrystal = () => {
         if (manaCrystals > 1) {
+            localStorage.setItem('manaCrystals', JSON.stringify(manaCrystals - 1));
             setManaCrystals(manaCrystals - 1);
         }
     }
@@ -135,26 +138,30 @@ const Simulator = () => {
     //Player 1 Class
     const handleNextPlayer1Class = () => {
         if (player1Class < 10) {
-            setPlayer1Class(player1Class + 1)
+            localStorage.setItem('player1Class', JSON.stringify(player1Class + 1));
+            setPlayer1Class(player1Class + 1);
         }
     }
 
     const handlePrevPlayer1Class = () => {
         if (player1Class > 0) {
-            setPlayer1Class(player1Class - 1)
+            localStorage.setItem('player1Class', JSON.stringify(player1Class - 1));
+            setPlayer1Class(player1Class - 1);
         }
     }
 
     //Player 2 Class
     const handleNextPlayer2Class = () => {
         if (player2Class < 10) {
-            setPlayer2Class(player2Class + 1)
+            localStorage.setItem('player2Class', JSON.stringify(player2Class + 1));
+            setPlayer2Class(player2Class + 1);
         }
     }
 
     const handlePrevPlayer2Class = () => {
         if (player2Class > 0) {
-            setPlayer2Class(player2Class - 1)
+            localStorage.setItem('player2Class', JSON.stringify(player2Class - 1));
+            setPlayer2Class(player2Class - 1);
         }
     }
 
@@ -163,18 +170,22 @@ const Simulator = () => {
     }
 
     const handleLoadFromLocalStorage = () => {
-        /*const keys = ['player1Health', 'player2Health'];
-        const sets = ['setPlayer1Health', 'setPlayer2Health'];
+        const keys = ['manaCrystals', 'player1Health', 'player2Health', 'player1Class', 'player2Class'];
+        const sets = ['setManaCrystals', 'setPlayer1Health', 'setPlayer2Health', 'setPlayer1Class', 'setPlayer2Class'];
         const storedValues = []
-        for (let i = 1; i <= keys.length; i++) {
+        for (let i = 0; i <= keys.length; i++) {
             storedValues.push(localStorage.getItem(keys[i]));
             if (storedValues[i] !== null) {
-                const calledFunction = window[sets[i]];
-                calledFunction(storedValues[i]);
+                const func = eval(sets[i]);
+                if (typeof func === 'function') {
+                    func(storedValues[i]);
+                } else {
+                    console.error ('Invalid function name');
+                }
             }
-        }*/
+        }
 
-        
+        /*
         const storedValue1 = JSON.parse(localStorage.getItem('player1Health'));
         const storedValue2 = JSON.parse(localStorage.getItem('player2Health'));
         if (storedValue1 !== null) {
@@ -182,7 +193,8 @@ const Simulator = () => {
         }
         if (storedValue2 !== null) {
             setPlayer2Health(storedValue2);
-        }
+        }*/
+
     }
 
     useEffect(() => {
@@ -234,73 +246,76 @@ const Simulator = () => {
 
     return (
         <div className="Simulator">
-            <p>Mana Crystals</p>
-            <button onClick={handleAddCrystal}>+</button>
-            <button onClick={handleRemoveCrystal}>-</button>
-            <p>{manaCrystals}</p>
-            <div className="ManaBar" style={{width: manaCrystals * 31}}>
+            <img src={board} className="HS-board" alt="board" />
+            <div className="SimulatorControls">
+                <p>Mana Crystals</p>
+                <button onClick={handleAddCrystal}>+</button>
+                <button onClick={handleRemoveCrystal}>-</button>
+                <p>{manaCrystals}</p>
+                <div className="ManaBar" style={{width: manaCrystals * 31}}>
 
+                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <p>Player 1 Class</p>
+                            <button onClick={handleNextPlayer1Class}>+</button>
+                            <button onClick={handlePrevPlayer1Class}>-</button>
+                            <p>{classes[player1Class]}</p>
+                            <div className="Player1Class" style={{backgroundImage: `url("images/heroes/${classes[player1Class]}.png")`}}></div>
+                            <div className="Player1HeroPower" style={{backgroundImage: `url("images/hero_powers/HERO_${classes[player1Class]}.webp")`}}></div>
+                        </td>
+                        <td>
+                            <p>Player 2 Class</p>
+                            <button onClick={handleNextPlayer2Class}>+</button>
+                            <button onClick={handlePrevPlayer2Class}>-</button>
+                            <p>{classes[player2Class]}</p>
+                            <div className="Player2Class" style={{backgroundImage: `url("images/heroes/${classes[player2Class]}.png")`}}></div>
+                            <div className="Player2HeroPower" style={{backgroundImage: `url("images/hero_powers/HERO_${classes[player2Class]}.webp")`}}></div>
+                        </td>
+                        <td>
+                            <p>Player 1 Health</p>
+                            <button onClick={handleIncPlayer1Health}>+</button>
+                            <button onClick={handleDecPlayer1Health}>-</button>
+                            <p>{player1Health}</p>
+                            <div className="Player1Health" style={{color: player1Health < 30 ? "#D20403" : "white"}}>{player1Health}</div>
+                        </td>
+                        <td>
+                            <p>Player 2 Health</p>
+                            <button onClick={handleIncPlayer2Health}>+</button>
+                            <button onClick={handleDecPlayer2Health}>-</button>
+                            <p>{player2Health}</p>
+                            <div className="Player2Health" style={{color: player2Health < 30 ? "#D20403" : "white"}}>{player2Health}</div>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td><CardSelector cardPosition="-3"/></td>
+                        <td><CardSelector cardPosition="-2"/></td>
+                        <td><CardSelector cardPosition="-1"/></td>
+                        <td><CardSelector cardPosition="0"/></td>
+                        <td><CardSelector cardPosition="1"/></td>
+                        <td><CardSelector cardPosition="2"/></td>
+                        <td><CardSelector cardPosition="3"/></td>
+                    </tr>
+                </table>
+                <CardHand />
+
+                {/*<Board />
+                <Board />*/}
+                {/*<Autocomplete
+                    suggestions={jsonNameData}
+                />*/}
+
+                {/*<div className="app" onClick={handleClick}>
+                    {boxes.map((box) => (
+                        <div className="box" style={{ left: box.x, top: box.y }}></div>
+                    ))}
+                </div>*/} 
             </div>
-            <table>
-                <tr>
-                    <td>
-                        <p>Player 1 Class</p>
-                        <button onClick={handleNextPlayer1Class}>+</button>
-                        <button onClick={handlePrevPlayer1Class}>-</button>
-                        <p>{classes[player1Class]}</p>
-                        <div className="Player1Class" style={{backgroundImage: `url("images/heroes/${classes[player1Class]}.png")`}}></div>
-                        <div className="Player1HeroPower" style={{backgroundImage: `url("images/hero_powers/HERO_${classes[player1Class]}.webp")`}}></div>
-                    </td>
-                    <td>
-                        <p>Player 2 Class</p>
-                        <button onClick={handleNextPlayer2Class}>+</button>
-                        <button onClick={handlePrevPlayer2Class}>-</button>
-                        <p>{classes[player2Class]}</p>
-                        <div className="Player2Class" style={{backgroundImage: `url("images/heroes/${classes[player2Class]}.png")`}}></div>
-                        <div className="Player2HeroPower" style={{backgroundImage: `url("images/hero_powers/HERO_${classes[player2Class]}.webp")`}}></div>
-                    </td>
-                    <td>
-                        <p>Player 1 Health</p>
-                        <button onClick={handleIncPlayer1Health}>+</button>
-                        <button onClick={handleDecPlayer1Health}>-</button>
-                        <p>{player1Health}</p>
-                        <div className="Player1Health" style={{color: player1Health < 30 ? "#D20403" : "white"}}>{player1Health}</div>
-                    </td>
-                    <td>
-                        <p>Player 2 Health</p>
-                        <button onClick={handleIncPlayer2Health}>+</button>
-                        <button onClick={handleDecPlayer2Health}>-</button>
-                        <p>{player2Health}</p>
-                        <div className="Player2Health" style={{color: player2Health < 30 ? "#D20403" : "white"}}>{player2Health}</div>
-                    </td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <td><CardSelector cardPosition="-3"/></td>
-                    <td><CardSelector cardPosition="-2"/></td>
-                    <td><CardSelector cardPosition="-1"/></td>
-                    <td><CardSelector cardPosition="0"/></td>
-                    <td><CardSelector cardPosition="1"/></td>
-                    <td><CardSelector cardPosition="2"/></td>
-                    <td><CardSelector cardPosition="3"/></td>
-                </tr>
-            </table>
-            <CardHand />
-
-            {/*<Board />
-            <Board />*/}
-            {/*<Autocomplete
-                suggestions={jsonNameData}
-            />*/}
-
-            {/*<div className="app" onClick={handleClick}>
-                {boxes.map((box) => (
-                    <div className="box" style={{ left: box.x, top: box.y }}></div>
-                ))}
-            </div>*/}
-            
         </div>
+        
     );
 };
 
