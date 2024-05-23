@@ -60,9 +60,19 @@ button {
   left: 14vw;
 }
 
-.ManaBar {
+.ManaBar1 {
   position: absolute;
   top: 97vh;
+  left: 63vw;
+  background-image: url("images/ManaCrystal.png");
+  background-repeat: repeat-x;
+  height: 31px;
+  width: 155px;
+}
+
+.ManaBar2 {
+  position: absolute;
+  top: 40vh;
   left: 63vw;
   background-image: url("images/ManaCrystal.png");
   background-repeat: repeat-x;

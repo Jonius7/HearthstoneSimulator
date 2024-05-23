@@ -13,16 +13,14 @@ import Cookies from 'js-cookie';
 
 
 const Simulator = () => {
-    const [manaCrystals, setManaCrystals] = useState(1);
+    const [manaCrystals1, setManaCrystals1] = useState(1);
+    const [manaCrystals2, setManaCrystals2] = useState(1);
     const classes = ['Death Knight', 'Demon Hunter', 'Druid', 'Hunter', 
     'Mage', 'Paladin', 'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior'];
     const [player1Class, setPlayer1Class] = useState(2);
     const [player2Class, setPlayer2Class] = useState(4);
     const [player1Health, setPlayer1Health] = useState(30);
     const [player2Health, setPlayer2Health] = useState(30);
-
-
-
 
     const jsonStringData = JSON.stringify(cards);
     const jsonData = JSON.parse(jsonStringData);
@@ -121,17 +119,31 @@ const Simulator = () => {
     }
 
     //Mana Crystals
-    const handleAddCrystal = () => {
-        if (manaCrystals < 10) {
-            localStorage.setItem('manaCrystals', JSON.stringify(manaCrystals + 1));
-            setManaCrystals(manaCrystals + 1);
+    const handleAddCrystal1 = () => {
+        if (manaCrystals1 < 10) {
+            localStorage.setItem('manaCrystals1', JSON.stringify(manaCrystals1 + 1));
+            setManaCrystals1(manaCrystals1 + 1);
         }
     }
 
-    const handleRemoveCrystal = () => {
-        if (manaCrystals > 1) {
-            localStorage.setItem('manaCrystals', JSON.stringify(manaCrystals - 1));
-            setManaCrystals(manaCrystals - 1);
+    const handleRemoveCrystal1 = () => {
+        if (manaCrystals1 > 1) {
+            localStorage.setItem('manaCrystals1', JSON.stringify(manaCrystals1 - 1));
+            setManaCrystals1(manaCrystals1 - 1);
+        }
+    }
+
+    const handleAddCrystal2 = () => {
+        if (manaCrystals2 < 10) {
+            localStorage.setItem('manaCrystals2', JSON.stringify(manaCrystals2 + 1));
+            setManaCrystals2(manaCrystals2 + 1);
+        }
+    }
+
+    const handleRemoveCrystal2 = () => {
+        if (manaCrystals2 > 1) {
+            localStorage.setItem('manaCrystals2', JSON.stringify(manaCrystals2 - 1));
+            setManaCrystals2(manaCrystals2 - 1);
         }
     }
 
@@ -170,8 +182,8 @@ const Simulator = () => {
     }
 
     const handleLoadFromLocalStorage = () => {
-        const keys = ['manaCrystals', 'player1Health', 'player2Health', 'player1Class', 'player2Class'];
-        const sets = ['setManaCrystals', 'setPlayer1Health', 'setPlayer2Health', 'setPlayer1Class', 'setPlayer2Class'];
+        const keys = ['manaCrystals1', 'manaCrystals2', 'player1Health', 'player2Health', 'player1Class', 'player2Class'];
+        const sets = ['setManaCrystals1', 'setManaCrystals2', 'setPlayer1Health', 'setPlayer2Health', 'setPlayer1Class', 'setPlayer2Class'];
         const storedValues = []
         for (let i = 0; i <= keys.length; i++) {
             storedValues.push(localStorage.getItem(keys[i]));
@@ -248,14 +260,27 @@ const Simulator = () => {
         <div className="Simulator">
             <img src={board} className="HS-board" alt="board" />
             <div className="SimulatorControls">
-                <p>Mana Crystals</p>
-                <button onClick={handleAddCrystal}>+</button>
-                <button onClick={handleRemoveCrystal}>-</button>
-                <p>{manaCrystals}</p>
-                <div className="ManaBar" style={{width: manaCrystals * 31}}>
+                
+                
 
-                </div>
+                
                 <table>
+                    <tr>
+                        <td>
+                            <p>Player 1 Mana</p>
+                            <button onClick={handleAddCrystal1}>+</button>
+                            <button onClick={handleRemoveCrystal1}>-</button>
+                            <p>{manaCrystals1}</p>
+                            <div className="ManaBar1" style={{width: manaCrystals1 * 31}}></div>
+                        </td>
+                        <td>
+                            <p>Player 2 Mana</p>
+                            <button onClick={handleAddCrystal2}>+</button>
+                            <button onClick={handleRemoveCrystal2}>-</button>
+                            <p>{manaCrystals2}</p>
+                            <div className="ManaBar2" style={{width: manaCrystals2 * 31}}></div>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <p>Player 1 Class</p>
