@@ -302,10 +302,6 @@ const Simulator = () => {
         <div className="Simulator">
             <img src={board} className="HS-board" alt="board" />
             <div className="SimulatorControls">
-                
-                
-
-                
                 <table>
                     <tr>
                         <td>
