@@ -132,18 +132,50 @@ button {
   position: absolute;
   top: 55vh;
   left: 52.5vw;
-  font-size: 22px;
+  width: 25px;
+  text-align: center;
+  font-size: 25px;
   color: white;
   font-family: 'Belwe Bold';
+  background-image: url("images/health.png");
+  background-position: center bottom;
 }
 
 .Player2Health {
   position: absolute;
   top: 94vh;
   left: 52.5vw;
-  font-size: 22px;
+  width: 25px;
+  text-align: center;
+  font-size: 25px;
   color: white;
   font-family: 'Belwe Bold';
+  background-image: url("images/health.png");
+  background-position: center bottom;
+}
+
+.Player1Armor {
+  position: absolute;
+  top: 52.5vh;
+  left: 52.5vw;
+  width: 25px;
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  font-family: 'Belwe Bold';
+  background-image: url("images/armor.png");
+}
+
+.Player2Armor {
+  position: absolute;
+  top: 91.5vh;
+  left: 52.5vw;
+  width: 25px;
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  font-family: 'Belwe Bold';
+  background-image: url("images/armor.png");
 }
 
 /* End Simulator CSS */
@@ -211,6 +243,7 @@ input {
 .floating {
   position: absolute;
   top: 20vh;
+  left: 66vw;
 }
 
 .wideTd {

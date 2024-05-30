@@ -21,6 +21,8 @@ const Simulator = () => {
     const [player2Class, setPlayer2Class] = useState(4);
     const [player1Health, setPlayer1Health] = useState(30);
     const [player2Health, setPlayer2Health] = useState(30);
+    const [player1Armor, setPlayer1Armor] = useState(0);
+    const [player2Armor, setPlayer2Armor] = useState(0);
 
     const jsonStringData = JSON.stringify(cards);
     const jsonData = JSON.parse(jsonStringData);
@@ -182,17 +184,26 @@ const Simulator = () => {
     }
 
     const handleLoadFromLocalStorage = () => {
-        const keys = ['manaCrystals1', 'manaCrystals2', 'player1Health', 'player2Health', 'player1Class', 'player2Class'];
-        const sets = ['setManaCrystals1', 'setManaCrystals2', 'setPlayer1Health', 'setPlayer2Health', 'setPlayer1Class', 'setPlayer2Class'];
+        const keys = ['manaCrystals1', 'manaCrystals2', 
+        'player1Health', 'player2Health', 
+        'player1Armor', 'player2Armor', 
+        'player1Class', 'player2Class'];
+        const sets = ['setManaCrystals1', 'setManaCrystals2', 
+        'setPlayer1Health', 'setPlayer2Health', 
+        'setPlayer1Armor', 'setPlayer2Armor', 
+        'setPlayer1Class', 'setPlayer2Class'];
         const storedValues = []
         for (let i = 0; i <= keys.length; i++) {
-            storedValues.push(localStorage.getItem(keys[i]));
-            if (storedValues[i] !== null) {
-                const func = eval(sets[i]);
-                if (typeof func === 'function') {
-                    func(storedValues[i]);
-                } else {
-                    console.error ('Invalid function name');
+            const storedData = localStorage.getItem(keys[i]);
+            if (storedData) {
+                storedValues.push(JSON.parse(storedData));
+                if (storedValues[i] !== null) {
+                    const func = eval(sets[i]);
+                    if (typeof func === 'function') {
+                        func(storedValues[i]);
+                    } else {
+                        console.error ('Invalid function name');
+                    }
                 }
             }
         }
@@ -242,6 +253,37 @@ const Simulator = () => {
             setPlayer2Health(player2Health - 1)
         }
     }
+
+    //Player 1 Armor
+    const handleIncPlayer1Armor = () => {
+        if (player1Armor < 100) {
+            localStorage.setItem('player1Armor', JSON.stringify(player1Armor + 1))
+            setPlayer1Armor(player1Armor + 1)
+        }
+    }
+
+    const handleDecPlayer1Armor = () => {
+        if (player1Armor > 0) {
+            localStorage.setItem('player1Armor', JSON.stringify(player1Armor - 1))
+            setPlayer1Armor(player1Armor - 1)
+        }
+    }
+
+    //Player 2 Armor
+    const handleIncPlayer2Armor = () => {
+        if (player2Armor < 100) {
+            localStorage.setItem('player2Armor', JSON.stringify(player2Armor + 1))
+            setPlayer2Armor(player2Armor + 1)
+        }
+    }
+
+    const handleDecPlayer2Armor = () => {
+        if (player2Armor > 0) {
+            localStorage.setItem('player2Armor', JSON.stringify(player2Armor - 1))
+            setPlayer2Armor(player2Armor - 1)
+        }
+    }
+
     
     //Player 1 Health Color
     const handlePlayer1HealthColor = () => {
@@ -311,6 +353,24 @@ const Simulator = () => {
                             <button onClick={handleDecPlayer2Health}>-</button>
                             <p>{player2Health}</p>
                             <div className="Player2Health" style={{color: player2Health < 30 ? "#D20403" : "white"}}>{player2Health}</div>
+                        </td>
+                        <td>
+                            <p>Player 1 Armor</p>
+                            <button onClick={handleIncPlayer1Armor}>+</button>
+                            <button onClick={handleDecPlayer1Armor}>-</button>
+                            <p>{player1Armor}</p>
+                            {player1Armor !== 0 && (
+                                <div className="Player1Armor">{player1Armor}</div>
+                            )}                            
+                        </td>
+                        <td>
+                            <p>Player 2 Armor</p>
+                            <button onClick={handleIncPlayer2Armor}>+</button>
+                            <button onClick={handleDecPlayer2Armor}>-</button>
+                            <p>{player2Armor}</p>
+                            {player2Armor !== 0 && (
+                                <div className="Player2Armor">{player2Armor}</div>
+                            )}                            
                         </td>
                     </tr>
                 </table>
